@@ -6,20 +6,25 @@ import (
 	"slices"
 	"time"
 
-	ptel "github.com/intel/powertelemetry"
+	ptel "github.com/guojingzi/powertelemetry"
 
 	"github.com/influxdata/telegraf"
 )
 
 // optConfig represents plugin configuration fields needed to generate options.
 type optConfig struct {
-	cpuMetrics     []cpuMetricType
-	packageMetrics []packageMetricType
-	includedCPUs   []int
-	excludedCPUs   []int
-	perfEventFile  string
-	msrReadTimeout time.Duration
-	log            telegraf.Logger
+	cpuMetrics      []cpuMetricType
+	packageMetrics  []packageMetricType
+	includedCPUs    []int
+	excludedCPUs    []int
+	perfEventFile   string
+	msrHostPath     string
+	raplHostPath    string
+	cpuFreqHostPath string
+	uncoreHostPath  string
+	dieHostPath     string
+	msrReadTimeout  time.Duration
+	log             telegraf.Logger
 }
 
 // optionGenerator takes a struct with the plugin configuration, and generates options
@@ -45,26 +50,50 @@ func (*optGenerator) generate(cfg optConfig) []ptel.Option {
 
 	if needsMsrCPU(cfg.cpuMetrics) || needsMsrPackage(cfg.packageMetrics) {
 		if cfg.msrReadTimeout == 0 {
-			opts = append(opts, ptel.WithMsr())
+			if cfg.msrHostPath != "" {
+				opts = append(opts, ptel.WithMsr(cfg.msrHostPath))
+			} else {
+				opts = append(opts, ptel.WithMsr())
+			}
 		} else {
-			opts = append(opts, ptel.WithMsrTimeout(cfg.msrReadTimeout))
+			if cfg.msrHostPath != "" {
+				opts = append(opts, ptel.WithMsrTimeout(cfg.msrReadTimeout, cfg.msrHostPath))
+			} else {
+				opts = append(opts, ptel.WithMsrTimeout(cfg.msrReadTimeout))
+			}
 		}
 	}
 
 	if needsRapl(cfg.packageMetrics) {
-		opts = append(opts, ptel.WithRapl())
+		if cfg.raplHostPath != "" {
+			opts = append(opts, ptel.WithRapl(cfg.raplHostPath))
+		} else {
+			opts = append(opts, ptel.WithRapl())
+		}
 	}
 
 	if needsCoreFreq(cfg.cpuMetrics) {
-		opts = append(opts, ptel.WithCoreFrequency())
+		if cfg.cpuFreqHostPath != "" {
+			opts = append(opts, ptel.WithCoreFrequency(cfg.cpuFreqHostPath))
+		} else {
+			opts = append(opts, ptel.WithCoreFrequency())
+		}
 	}
 
 	if needsUncoreFreq(cfg.packageMetrics) {
-		opts = append(opts, ptel.WithUncoreFrequency())
+		if cfg.uncoreHostPath != "" {
+			opts = append(opts, ptel.WithUncoreFrequency(cfg.uncoreHostPath))
+		} else {
+			opts = append(opts, ptel.WithUncoreFrequency())
+		}
 	}
 
 	if needsPerf(cfg.cpuMetrics) {
 		opts = append(opts, ptel.WithPerf(cfg.perfEventFile))
+	}
+
+	if cfg.dieHostPath != "" {
+		opts = append(opts, ptel.WithTopology(cfg.dieHostPath))
 	}
 
 	if cfg.log != nil {

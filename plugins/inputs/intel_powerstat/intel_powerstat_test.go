@@ -8,7 +8,7 @@ import (
 	"strconv"
 	"testing"
 
-	ptel "github.com/intel/powertelemetry"
+	ptel "github.com/guojingzi/powertelemetry"
 	"github.com/stretchr/testify/mock"
 	"github.com/stretchr/testify/require"
 

@@ -8,7 +8,7 @@ import (
 	"math"
 	"strconv"
 
-	ptel "github.com/intel/powertelemetry"
+	ptel "github.com/guojingzi/powertelemetry"
 
 	"github.com/influxdata/telegraf"
 )

@@ -13,7 +13,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/intel/powertelemetry"
+	"github.com/guojingzi/powertelemetry"
 	"github.com/shirou/gopsutil/v4/cpu"
 
 	"github.com/influxdata/telegraf"
@@ -32,6 +32,11 @@ type PowerStat struct {
 	ExcludedCPUs     []string            `toml:"excluded_cpus"`
 	EventDefinitions string              `toml:"event_definitions"`
 	MsrReadTimeout   config.Duration     `toml:"msr_read_timeout"`
+	MsrHostPath      string              `toml:"msr_host_path"`
+	RaplHostPath     string              `toml:"rapl_host_path"`
+	CpuFreqHostPath  string              `toml:"cpu_freq_host_path"`
+	UncoreHostPath   string              `toml:"uncore_freq_host_path"`
+	DieHostPath      string              `toml:"die_host_path"`
 	Log              telegraf.Logger     `toml:"-"`
 
 	parsedIncludedCores []int
@@ -78,13 +83,18 @@ func (p *PowerStat) Init() error {
 // Start initializes the metricFetcher interface of the receiver to gather metrics.
 func (p *PowerStat) Start(_ telegraf.Accumulator) error {
 	opts := p.option.generate(optConfig{
-		cpuMetrics:     p.CPUMetrics,
-		packageMetrics: p.PackageMetrics,
-		includedCPUs:   p.parsedIncludedCores,
-		excludedCPUs:   p.parsedExcludedCores,
-		perfEventFile:  p.EventDefinitions,
-		msrReadTimeout: time.Duration(p.MsrReadTimeout),
-		log:            p.Log,
+		cpuMetrics:      p.CPUMetrics,
+		packageMetrics:  p.PackageMetrics,
+		includedCPUs:    p.parsedIncludedCores,
+		excludedCPUs:    p.parsedExcludedCores,
+		perfEventFile:   p.EventDefinitions,
+		msrHostPath:     p.MsrHostPath,
+		raplHostPath:    p.RaplHostPath,
+		cpuFreqHostPath: p.CpuFreqHostPath,
+		uncoreHostPath:  p.UncoreHostPath,
+		dieHostPath:     p.DieHostPath,
+		msrReadTimeout:  time.Duration(p.MsrReadTimeout),
+		log:             p.Log,
 	})
 
 	var err error

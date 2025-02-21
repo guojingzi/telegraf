@@ -1517,6 +1517,8 @@ github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0 h1:bkypFPDjIYGfCYD5mRBvpqxfYX1
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.20.0/go.mod h1:P+Lt/0by1T8bfcF3z737NnSbmxQAppXMRziHUxPOC8k=
 github.com/gsterjov/go-libsecret v0.0.0-20161001094733-a6f4afe4910c h1:6rhixN/i8ZofjG1Y75iExal34USq5p+wiN1tpie8IrU=
 github.com/gsterjov/go-libsecret v0.0.0-20161001094733-a6f4afe4910c/go.mod h1:NMPJylDgVpX0MLRlPy15sqSwOFv/U1GZ2m21JhFfek0=
+github.com/guojingzi/powertelemetry v0.0.0-20250221054103-5b33a62ce54f h1:Uz6DDSEQeOSu0akOHNDk2SG/yqJO2washe1O3X0F0kc=
+github.com/guojingzi/powertelemetry v0.0.0-20250221054103-5b33a62ce54f/go.mod h1:pNDqtACG3ycNT2JgVCGP4Vumi00j3RGSe3nZvxisC4A=
 github.com/gwos/tcg/sdk v0.0.0-20240830123415-f8a34bba6358 h1:QmKzhYk6KMjUutu9Sy4DyOkRgj1Dv+iFnea4t8KrCZg=
 github.com/gwos/tcg/sdk v0.0.0-20240830123415-f8a34bba6358/go.mod h1:h40FJV0HuULqXSSKf7kfCbOxEcQAD74a5e2LC2+rYiQ=
 github.com/hailocab/go-hostpool v0.0.0-20160125115350-e80d13ce29ed h1:5upAirOpQc1Q53c0bnx2ufif5kANL7bfZWcc6VJWJd8=
@@ -1620,8 +1622,6 @@ github.com/influxdata/toml v0.0.0-20190415235208-270119a8ce65 h1:vvyMtD5LTJc1W9s
 github.com/influxdata/toml v0.0.0-20190415235208-270119a8ce65/go.mod h1:zApaNFpP/bTpQItGZNNUMISDMDAnTXu9UqJ4yT3ocz8=
 github.com/intel/iaevents v1.1.0 h1:FzxMBfXk/apG2EUXUCfaq3gUQ+q+TgZ1HNMjjUILUGE=
 github.com/intel/iaevents v1.1.0/go.mod h1:CyUUzXw0lHRCsmyyF7Pwco9Y7NiTNQUUlcJ7RJAazKs=
-github.com/intel/powertelemetry v1.0.2 h1:092xOflYu+YXzY3c/fQ2DpK1ePy9q9ulbm5yiNYrVkc=
-github.com/intel/powertelemetry v1.0.2/go.mod h1:+PHKI9RElL7J1sTjgg3DGxtscD+IiLNmUzV1MOSCZt4=
 github.com/jackc/chunkreader v1.0.0/go.mod h1:RT6O25fNZIuasFJRyZ4R/Y2BbhasbmZXF9QQ7T3kePo=
 github.com/jackc/chunkreader/v2 v2.0.0/go.mod h1:odVSm741yZoC3dpHEUXIqA9tQRhFrgOHwnPIn9lDKlk=
 github.com/jackc/chunkreader/v2 v2.0.1 h1:i+RDz65UE+mmpjTfyz0MoVTnzeYxroil2G82ki7MGG8=

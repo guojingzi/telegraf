@@ -3,7 +3,7 @@
 package intel_powerstat
 
 import (
-	ptel "github.com/intel/powertelemetry"
+	ptel "github.com/guojingzi/powertelemetry"
 )
 
 // topologyFetcher fetches topology information of the host.
