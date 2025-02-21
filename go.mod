@@ -109,7 +109,7 @@ require (
 	github.com/gorilla/websocket v1.5.3
 	github.com/gosnmp/gosnmp v1.38.0
 	github.com/grid-x/modbus v0.0.0-20240503115206-582f2ab60a18
-	github.com/guojingzi/powertelemetry v0.0.0-20250221054103-5b33a62ce54f
+	github.com/guojingzi/powertelemetry v0.0.0-20250221065637-ee8b278346b1
 	github.com/gwos/tcg/sdk v0.0.0-20240830123415-f8a34bba6358
 	github.com/harlow/kinesis-consumer v0.3.6-0.20240916192723-43900507c911
 	github.com/hashicorp/consul/api v1.29.2
